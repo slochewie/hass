@@ -1,0 +1,13 @@
+# Zigbee2MQTT configuration file
+homeassistant: true
+permit_join: true
+mqtt:
+  base_topic: zigbee2mqtt
+  server: <LAN ip address of server>
+#  user: <user>
+#  password: <password>
+serial:
+  port: /dev/ttyACM0
+frontend:
+# default is 8080. 8080 conflicts with UniFi Controller.
+  port: 8989
