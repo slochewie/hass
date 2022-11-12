@@ -1,0 +1,63 @@
+version: "2.1"
+services:
+  homeassistant:
+# https://www.home-assistant.io
+# https://hub.docker.com/r/homeassistant/home-assistant
+    image: lscr.io/linuxserver/homeassistant:latest
+    network_mode: host
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=America/Los_Angeles
+    volumes:
+      - ./homeassistant/config:/config
+#    ports:
+#      - 8123:8123 #optional
+#    devices:
+#      - /path/to/device:/path/to/device #optional
+    restart: unless-stopped
+    depends_on:
+      - mosquitto
+      - zigbee2mqtt
+
+  mosquitto:
+# https://mosquitto.org/
+# https://hub.docker.com/_/eclipse-mosquitto
+    image: eclipse-mosquitto
+    environment:
+#      - PUID=1000
+#      - PGID=1000
+      - TZ=America/Los_Angeles
+    user: 1883:1883
+    ports:
+      - 1883:1883
+      - 9001:9001
+    volumes:
+      - ./mosquitto/config:/mosquitto/config
+      - ./mosquitto/data:/mosquitto/data
+      - ./mosquitto/log:/mosquitto/log
+    restart: unless-stopped
+    
+  zigbee2mqtt:
+# https://www.zigbee2mqtt.io/
+# https://github.com/Koenkk/zigbee2mqtt
+    image: koenkk/zigbee2mqtt
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=America/Los_Angeles
+    restart: unless-stopped
+    volumes:
+      - ./zigbee2mqtt/data:/app/data
+      - /run/udev:/run/udev:ro
+    ports:
+      # Frontend port. default is 8080, but that conflicts with Unifi Controller.
+      #-8080:8080
+      - 8989:8989
+    environment:
+      - TZ=America/Los_Angeles
+    devices:
+      # Make sure this matched your adapter location. The following should be what a Sonoff Zigbee 3 USB adapter uses.
+      - /dev/ttyUSB0:/dev/ttyACM0
+    depends_on:
+      - mosquitto
