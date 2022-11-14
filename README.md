@@ -24,19 +24,15 @@ docker-compose up -d
 ```
 Edit Zigbee2MQTT's configuration.yml to your needs
 ```
-nano configuration.yml
+nano $HOME/docker/hass/zigbee2mqtt/data/configuration.yml
 ```
-```
-sudo mv configuration.yml ./zigbee2mqtt/data/
-```
+
 
 Edit Mosquitto's mosquito.conf to your needs. By default the existing file should work as is with no authentication needed. This is fine for initial usage making sure it works, but authentication should be added.
 ```
-nano mosquitto.conf
+nano $HOME/docker/hass/mosquitto/config/mosquitto.conf
 ```
-```
-sudo mv mosquito.conf ./mosquitto/config/
-```
+
 The Mosquitto container runs the mosquitto server under UID 1883 and GID 1883. I've tried changing this in the docker-compose file with no luck. My workaround to avoid read/write errors is to chown the mosquitto directory with 1883:1883
 ```
 sudo chown -R 1883:1883 ./mosquitto
