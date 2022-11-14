@@ -14,13 +14,7 @@ mkdir -p $HOME/docker/hass
 cd $HOME/docker/hass
 ```
 ```
-wget https://raw.githubusercontent.com/slochewie/docker-compose-files/main/hass/docker-compose.yml
-```
-```
-wget https://raw.githubusercontent.com/slochewie/docker-compose-files/main/hass/configuration.yml
-```
-```
-wget https://raw.githubusercontent.com/slochewie/docker-compose-files/main/hass/mosquitto.conf
+git clone https://github.com/slochewie/hass.git
 ```
 ```
 docker-compose pull
