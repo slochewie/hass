@@ -35,7 +35,7 @@ nano $HOME/docker/hass/mosquitto/config/mosquitto.conf
 
 The Mosquitto container runs the mosquitto server under UID 1883 and GID 1883. I've tried changing this in the docker-compose file with no luck. My workaround to avoid read/write errors is to chown the mosquitto directory with 1883:1883
 ```
-sudo chown -R 1883:1883 ./mosquitto
+sudo chown -R 1883:1883 $HOME/docker/hass/mosquitto/config/mosquitto
 ```
 
 Restart Mosquitto and Zigbee2MQTT
