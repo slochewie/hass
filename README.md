@@ -185,7 +185,7 @@ http://server-ip:8989
 
 
 ### Addendum
-This README works out of the box with the SONOFF Zigbee 3.0 USB Dongle Plus-E.
+This README works out of the box with the SONOFF Zigbee 3.0 USB Dongle Plus-P or SONOFF Zigbee 3.0 USB Dongle Plus-E only requiring minor changes. I have not tested it with other Zigbee controllers but it should work as a fairly accurate guideline.
 
 
 
