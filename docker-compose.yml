@@ -58,6 +58,9 @@ services:
       - TZ=America/Los_Angeles
     devices:
       # Make sure this matched your adapter location. The following should be what a Sonoff Zigbee 3 USB adapter uses.
+      # Sonoff ZBDongle-P
       - /dev/ttyUSB0:/dev/ttyACM0
+      # Sonoff ZBDongle -E
+      #- /dev/ttyACM0:/dev/ttyACM0
     depends_on:
       - mosquitto
